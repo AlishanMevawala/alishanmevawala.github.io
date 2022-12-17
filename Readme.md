@@ -19,11 +19,11 @@ going live on the internet
   netlify deploy --build --prod
 ```
 
-git push... production build
+## GIT COMMAND LINE
 ```
-  bash
-  netlify deploy --build --prod
-```
+  git add ,
+  git commit -m "message"
+  git push origin main
 
 
 ## Netlify Config File Settings

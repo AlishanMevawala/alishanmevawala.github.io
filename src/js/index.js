@@ -1,8 +1,18 @@
-async function getToDos() {
-    const url = '/.netlify/functions/todos';
-    const res = await fetch(url);
-    const data = await res.json();
-    document.querySelector('#tagline').textContent = data.path;
+import {categoryTemplates} from './templates/categories';
+
+//  init app, load data, loop data, create the todos and add them to the DOM
+async function appInit() {
+    const res = await fetch('.netlify/functions/todos');
+    const todos = await res.json();
+    const containerElement = document.createElement('div');
+    let markup = ``;
+    todos.forEach(todo => {
+        const template = categoryTemplates[todo.category](todo);
+        markup += template;
+    });
+
+    containerElement.innerHTML = markup;
+    document.querySelector('main').append(containerElement);
 }
 
-getToDos();
+appInit();
